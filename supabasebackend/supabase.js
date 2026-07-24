@@ -1,6 +1,6 @@
-const supabaseUrl = "https://eflulwsoskktjbejdlck.supabase.co/rest/v1/";
+// The CDN script already created a global `supabase` object.
+// So rename YOUR client to avoid colliding with it.
+const SUPABASE_URL = "https://eflulwsoskktjbejdlck.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_3CjEYG7Fkq19NtLCylGXMA_lTEImEuR";
 
-const supabaseKey = "sb_publishable_3CjEYG7Fkq19NtLCylGXMA_lTEImEuR";
-
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-console.log("Supabase connected:", supabase);
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

@@ -1287,7 +1287,7 @@
         <button type="submit">Submit Prayer Request</button>
       </form>
 
-      <div id="Prayer Request Successfully Send"></div>
+       <div id="successMessage"></div>
     </div>
 
     <div id="ABOUT-VISSION-MISSION-EVENTS-GIVING-CONTAINER">
@@ -1363,7 +1363,7 @@
     <div id="copy">
       &copy; <b>2026:Masinde the Developer.All rights reserved.</b>
     </div>
-
+     
     <!-- Javascript for Gallery -->
     <script>
       const slides = document.querySelectorAll(".slide");
@@ -1410,33 +1410,36 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script src="./supabase.js"></script>
       <!-- SUBMIT EVENT javascript(SUPABASE CODE) -->
-        <script>
+     <script>
+      
   document
     .getElementById("prayerForm")
     .addEventListener("submit", async (e) => {
-
       e.preventDefault();
       console.log("Button clicked!");
 
+      const { data, error } = await supabaseClient
+        .from("soweto_pefa_prayer_requests")
+        .insert([
+          {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            request: document.getElementById("request").value
+          }
+        ]);
 
-      const { data, error } = await supabase
-  .from("Soweto Pefa PrayerRequests")
-  .insert([
-    {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      request: document.getElementById("request").value
-    }
-  ]);
-
-if (error) {
-  alert("Failed to submit prayer request.");
-  console.log(error);
-} else {
-  alert("Prayer request submitted successfully.");
-}
+      if (error) {
+        alert("Failed to submit prayer request.");
+        console.log(error);
+      } else {
+        alert("Prayer request submitted successfully.");
+        document.getElementById("prayerForm").reset();
+      }
     });
 </script>
+    
+
+
   </body>
 </html>
