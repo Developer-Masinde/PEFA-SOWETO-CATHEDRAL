@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+   <!-- protecting the Dashboard -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="../supabase.js"></script>
+<script src="js/auth.js"></script>
+<body>
+
+    <h1>PEFA Soweto Cathedral Admin Dashboard</h1>
+
+    <button id="logout-btn">Logout</button>
+
+    <hr>
+
+    <h2>Upload Church Media</h2>
+
+    <form id="uploadForm">
+
+        <label>Select a Photo or Video</label><br><br>
+
+        <input
+            type="file"
+            id="mediaFile"
+            accept="image/*,video/*"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">Upload Media</button>
+
+    </form>
+
+    <br>
+
+    <div id="uploadStatus"></div>
+
+    <hr>
+
+    <h2>Uploaded Media</h2>
+
+    <div id="mediaList"></div>
+
+<script src="js/upload.js"></script>
+<script src="./dashboard.css"></script>
+
+</body>
+</html>

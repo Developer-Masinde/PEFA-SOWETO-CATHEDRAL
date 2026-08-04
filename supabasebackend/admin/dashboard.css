@@ -1,0 +1,14 @@
+
+    
+        body{
+            color:black;
+            background-color:goldenrod;
+        }
+        button{
+            background-color:rgb(2, 46, 2);
+            padding:10px 20px;
+            color:white;
+            border:none;
+            border-radius:5px;
+            
+        }
