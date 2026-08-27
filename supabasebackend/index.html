@@ -6,7 +6,16 @@
 
     <title>PEFA CATHEDRAL SOWETO CHURCH</title>
 
-    <!-- FONT AWESOME -->
+    <!-- =====================================================
+         FAVICON
+    ====================================================== -->
+
+    <link rel="icon" type="image/jpeg" href="./CHURCH.jpg" />
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -14,8 +23,8 @@
 
     <style>
       /* =====================================================
-           GENERAL
-        ===================================================== */
+         GENERAL
+      ===================================================== */
 
       html {
         scroll-behavior: smooth;
@@ -30,11 +39,17 @@
         padding: 0;
         background-color: black;
         font-family: Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      img,
+      video {
+        max-width: 100%;
       }
 
       /* =====================================================
-           NAVIGATION
-        ===================================================== */
+         NAVIGATION
+      ===================================================== */
 
       .nav-bar {
         position: sticky;
@@ -59,6 +74,8 @@
         border-radius: 50%;
 
         object-fit: cover;
+
+        display: block;
       }
 
       .nav-bar ul {
@@ -94,11 +111,13 @@
         color: white;
 
         cursor: pointer;
+
+        user-select: none;
       }
 
       /* =====================================================
-           HERO
-        ===================================================== */
+         HERO
+      ===================================================== */
 
       .hero {
         min-height: 50vh;
@@ -159,8 +178,8 @@
       }
 
       /* =====================================================
-           HERO BUTTONS
-        ===================================================== */
+         HERO BUTTONS
+      ===================================================== */
 
       #BUTTON-CONTAINER {
         display: flex;
@@ -283,7 +302,7 @@
 
         height: 10px;
 
-        background: red;
+        background: white;
 
         border-radius: 50%;
 
@@ -313,8 +332,8 @@
       }
 
       /* =====================================================
-           CHURCH MUSEUM
-        ===================================================== */
+         CHURCH MUSEUM
+      ===================================================== */
 
       .church-museum {
         width: 100%;
@@ -331,16 +350,6 @@
 
         margin: 10px 0 25px;
       }
-
-      /*
-         * THE THREE MUSEUM CARDS
-         *
-         * VIDEO
-         * GALLERY
-         * VERSE
-         *
-         * ALL THREE ARE IN ONE ROW.
-         */
 
       .museum-container {
         width: 100%;
@@ -359,8 +368,8 @@
       }
 
       /* =====================================================
-           MUSEUM CARD
-        ===================================================== */
+         MUSEUM CARD
+      ===================================================== */
 
       .museum-card {
         min-width: 0;
@@ -399,8 +408,8 @@
       }
 
       /* =====================================================
-           VIDEO CARD
-        ===================================================== */
+         VIDEO CARD
+      ===================================================== */
 
       .video-card {
         display: flex;
@@ -426,6 +435,8 @@
         border-radius: 12px;
 
         overflow: hidden;
+
+        position: relative;
       }
 
       .museum-video-wrapper video {
@@ -434,6 +445,44 @@
         height: 100%;
 
         object-fit: contain;
+
+        background: black;
+
+        display: block;
+      }
+
+      .video-fallback {
+        position: absolute;
+
+        inset: 0;
+
+        display: none;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        color: gold;
+
+        padding: 20px;
+
+        background: #020617;
+      }
+
+      .video-fallback i {
+        font-size: 35px;
+
+        margin-bottom: 10px;
+      }
+
+      .video-fallback p {
+        margin: 5px 0;
+
+        color: white;
       }
 
       .museum-button {
@@ -471,8 +520,8 @@
       }
 
       /* =====================================================
-           SUPABASE GALLERY
-        ===================================================== */
+         SUPABASE GALLERY
+      ===================================================== */
 
       .gallery-card {
         display: flex;
@@ -500,8 +549,6 @@
         justify-content: center;
       }
 
-      /* LOADER */
-
       .museum-loader {
         width: 100%;
 
@@ -518,6 +565,8 @@
         text-align: center;
 
         color: gold;
+
+        padding: 20px;
       }
 
       .museum-loader i {
@@ -525,8 +574,6 @@
 
         margin-bottom: 10px;
       }
-
-      /* EMPTY MESSAGE */
 
       .museum-empty {
         color: gold;
@@ -537,8 +584,6 @@
 
         padding: 20px;
       }
-
-      /* SUPABASE IMAGES */
 
       .museum-gallery img {
         width: 100%;
@@ -567,8 +612,8 @@
       }
 
       /* =====================================================
-           BIBLE VERSE
-        ===================================================== */
+         BIBLE VERSE
+      ===================================================== */
 
       .verse-card {
         display: flex;
@@ -643,8 +688,8 @@
       }
 
       /* =====================================================
-           MAIN INFORMATION CARDS
-        ===================================================== */
+         MAIN INFORMATION CARDS
+      ===================================================== */
 
       .card-container {
         display: grid;
@@ -712,11 +757,13 @@
         object-fit: cover;
 
         border-radius: 10px;
+
+        flex-shrink: 0;
       }
 
       /* =====================================================
-           LEADERS
-        ===================================================== */
+         LEADERS
+      ===================================================== */
 
       .leaders {
         display: grid;
@@ -755,8 +802,8 @@
       }
 
       /* =====================================================
-           PRAYER REQUEST
-        ===================================================== */
+         PRAYER REQUEST
+      ===================================================== */
 
       .request-p {
         padding: 25px 10px;
@@ -815,6 +862,17 @@
         border-radius: 8px;
 
         font-size: 14px;
+
+        font-family: Arial, sans-serif;
+      }
+
+      .request-p input:focus,
+      .request-p textarea:focus {
+        outline: none;
+
+        border-color: gold;
+
+        box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
       }
 
       .request-p textarea {
@@ -847,19 +905,29 @@
         transform: translateY(-2px);
       }
 
-      #successMessage {
-        color: lime;
+      .request-p button:disabled {
+        opacity: 0.6;
 
+        cursor: not-allowed;
+
+        transform: none;
+      }
+
+      #successMessage {
         text-align: center;
 
         margin-top: 15px;
 
         font-weight: bold;
+
+        min-height: 20px;
+
+        padding: 0 10px;
       }
 
       /* =====================================================
-           ABOUT / VISION / MISSION / EVENTS / GIVING
-        ===================================================== */
+         ABOUT / VISION / MISSION / EVENTS / GIVING
+      ===================================================== */
 
       #ABOUT-VISSION-MISSION-EVENTS-GIVING-CONTAINER {
         display: grid;
@@ -918,8 +986,8 @@
       }
 
       /* =====================================================
-           STATS
-        ===================================================== */
+         STATS
+      ===================================================== */
 
       .stats {
         display: flex;
@@ -936,8 +1004,8 @@
       }
 
       /* =====================================================
-           FOOTER
-        ===================================================== */
+         FOOTER
+      ===================================================== */
 
       .footer {
         background: #0f172a;
@@ -988,8 +1056,8 @@
       }
 
       /* =====================================================
-           WHATSAPP
-        ===================================================== */
+         WHATSAPP
+      ===================================================== */
 
       .whatsapp-float {
         position: fixed;
@@ -1040,8 +1108,8 @@
       }
 
       /* =====================================================
-           TABLET
-        ===================================================== */
+         TABLET
+      ===================================================== */
 
       @media (max-width: 900px) {
         .museum-container {
@@ -1068,10 +1136,20 @@
       }
 
       /* =====================================================
-           MOBILE
-        ===================================================== */
+         MOBILE
+      ===================================================== */
 
       @media (max-width: 768px) {
+        .nav-bar {
+          padding: 8px 15px;
+        }
+
+        .logo img {
+          width: 60px;
+
+          height: 60px;
+        }
+
         .hamburger {
           display: block;
         }
@@ -1083,7 +1161,7 @@
 
           position: absolute;
 
-          top: 80px;
+          top: 76px;
 
           right: 10px;
 
@@ -1102,17 +1180,46 @@
           display: flex;
         }
 
+        .nav-bar ul li {
+          padding: 5px 0;
+        }
+
+        .hero {
+          min-height: 60vh;
+
+          padding: 15px;
+        }
+
         .hero-content h1 {
           font-size: 1.5rem;
+
+          max-width: 95%;
         }
 
         .hero-content p {
           font-size: 1rem;
         }
 
-        /*
-             * MOBILE MUSEUM
-             */
+        #BUTTON-CONTAINER {
+          padding: 5px;
+        }
+
+        .action-pill {
+          width: 100%;
+
+          border-radius: 20px;
+
+          padding: 10px;
+        }
+
+        .location,
+        .watch-live-btn {
+          width: 100%;
+        }
+
+        .arrow {
+          display: none;
+        }
 
         .museum-container {
           grid-template-columns: 1fr;
@@ -1122,10 +1229,25 @@
           font-size: 2rem;
         }
 
+        .museum-card {
+          min-height: auto;
+        }
+
+        .museum-video-wrapper {
+          height: 220px;
+        }
+
+        .museum-gallery,
+        .verse-slider {
+          height: 250px;
+        }
+
         .stats {
           flex-direction: column;
 
           gap: 20px;
+
+          padding: 30px 15px;
         }
 
         .leaders {
@@ -1135,11 +1257,7 @@
         }
 
         .request-p form {
-          max-width: 90%;
-        }
-
-        .action-pill {
-          border-radius: 20px;
+          max-width: 95%;
         }
 
         .whatsapp-float {
@@ -1152,6 +1270,43 @@
           bottom: 15px;
 
           right: 15px;
+        }
+
+        #ABOUT-VISSION-MISSION-EVENTS-GIVING-CONTAINER {
+          margin: 15px;
+
+          padding: 15px;
+        }
+      }
+
+      /* =====================================================
+         SMALL MOBILE
+      ===================================================== */
+
+      @media (max-width: 400px) {
+        .hero-content h1 {
+          font-size: 1.25rem;
+        }
+
+        .hero-content p {
+          font-size: 0.9rem;
+        }
+
+        .museum-video-wrapper {
+          height: 190px;
+        }
+
+        .museum-gallery,
+        .verse-slider {
+          height: 220px;
+        }
+
+        .museum-verse {
+          font-size: 1rem;
+        }
+
+        .museum-verse span {
+          font-size: 0.85rem;
         }
       }
     </style>
@@ -1166,7 +1321,9 @@
       href="https://wa.me/254716499037"
       class="whatsapp-float"
       target="_blank"
+      rel="noopener noreferrer"
       title="Chat With Us"
+      aria-label="Chat With Us on WhatsApp"
     >
       <i class="fab fa-whatsapp"></i>
     </a>
@@ -1177,10 +1334,22 @@
 
     <nav class="nav-bar">
       <div class="logo">
-        <img src="./CHURCH.jpg" alt="Church Logo" />
+        <img
+          src="./CHURCH.jpg"
+          alt="PEFA Soweto Cathedral Church Logo"
+          onerror="this.style.display = 'none'"
+        />
       </div>
 
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <div
+        class="hamburger"
+        onclick="toggleMenu()"
+        aria-label="Open navigation menu"
+        role="button"
+        tabindex="0"
+      >
+        ☰
+      </div>
 
       <ul id="nav-links">
         <li>
@@ -1209,6 +1378,7 @@
               <a
                 href="https://maps.google.com/?q=PEFA+Soweto+Cathedral+Lower+Savannah"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="location"
               >
                 📍 Click for Directions
@@ -1219,6 +1389,7 @@
               <a
                 href="https://youtu.be/YnbruFgEyaQ?si=jOdIpraK2p4IWxXU"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="watch-link"
               >
                 <button type="button" class="watch-live-btn">
@@ -1241,15 +1412,35 @@
       <h2 class="museum-title">Church Museum</h2>
 
       <div class="museum-container">
-        <!-- ================= VIDEO ================= -->
+        <!-- =================================================
+             FEATURED VIDEO
+        ================================================= -->
 
         <div class="museum-card video-card">
           <h3>Featured Video</h3>
 
           <div class="museum-video-wrapper">
-            <video id="featuredVideo" controls>
-              <p>Your browser does not support video.</p>
+            <video
+              id="featuredVideo"
+              controls
+              preload="metadata"
+              playsinline
+              poster="./Masinde-Interview@INCEPTOR.mp4"
+            >
+              <source src="./Masinde-Interview@INCEPTOR.mp4" type="video/mp4" />
+
+              Your browser does not support HTML5 video.
             </video>
+
+            <!-- VIDEO FALLBACK -->
+
+            <div id="videoFallback" class="video-fallback">
+              <i class="fas fa-video-slash"></i>
+
+              <strong> Featured video unavailable </strong>
+
+              <p>Please try again later.</p>
+            </div>
           </div>
 
           <a href="./videos.html" class="museum-button">
@@ -1259,7 +1450,9 @@
           </a>
         </div>
 
-        <!-- ================= GALLERY ================= -->
+        <!-- =================================================
+             GALLERY
+        ================================================= -->
 
         <div class="museum-card gallery-card">
           <h3>Church Gallery</h3>
@@ -1273,7 +1466,9 @@
           </div>
         </div>
 
-        <!-- ================= VERSE ================= -->
+        <!-- =================================================
+             VERSE
+        ================================================= -->
 
         <div class="museum-card verse-card">
           <h3>Words of Faith</h3>
@@ -1380,7 +1575,11 @@
       <!-- BISHOP -->
 
       <div class="bishop-section">
-        <img src="./IDAHOSA.jpg" alt="Bishop" />
+        <img
+          src="./IDAHOSA.jpg"
+          alt="Bishop Benson Idahosa"
+          onerror="this.style.display = 'none'"
+        />
 
         <div class="bishop-info">
           <h2>Bishop Benson Idahosa</h2>
@@ -1430,32 +1629,35 @@
     <section class="request-p">
       <h4>PRAYER REQUEST & REGISTRATION</h4>
 
-      <form id="prayerForm">
+      <form id="prayerForm" novalidate>
         <label for="name"> Full Name </label>
 
-        <input type="text" id="name" required />
+        <input type="text" id="name" name="name" autocomplete="name" required />
 
         <label for="phone"> Phone Number </label>
 
-        <input type="tel" id="phone" required />
+        <input type="tel" id="phone" name="phone" autocomplete="tel" required />
 
         <label for="email"> Email </label>
 
-        <input type="email" id="email" />
+        <input type="email" id="email" name="email" autocomplete="email" />
 
         <label for="request"> Prayer Request </label>
 
         <textarea
           id="request"
+          name="request"
           rows="4"
           placeholder="Type your prayer request here..."
           required
         ></textarea>
 
-        <button type="submit">Submit Prayer Request</button>
+        <button type="submit" id="prayerSubmitButton">
+          Submit Prayer Request
+        </button>
       </form>
 
-      <div id="successMessage"></div>
+      <div id="successMessage" role="status" aria-live="polite"></div>
     </section>
 
     <!-- =====================================================
@@ -1563,8 +1765,21 @@
 
     <div id="copy">
       &copy;
+
       <b> 2026: Masinde the Developer. All rights reserved. </b>
     </div>
+
+    <!-- =====================================================
+         SUPABASE CDN
+    ===================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <!-- =====================================================
+         YOUR SUPABASE CONFIGURATION
+    ===================================================== -->
+
+    <script src="./supabase.js"></script>
 
     <!-- =====================================================
          HAMBURGER JAVASCRIPT
@@ -1572,58 +1787,121 @@
 
     <script>
       function toggleMenu() {
-        document.getElementById("nav-links").classList.toggle("show");
+        const navLinks = document.getElementById("nav-links");
+
+        if (navLinks) {
+          navLinks.classList.toggle("show");
+        }
       }
+
+      /*
+       * Allow keyboard users to open the mobile menu.
+       */
+      document.addEventListener("keydown", function (event) {
+        const hamburger = document.querySelector(".hamburger");
+
+        if (event.key === "Enter" && document.activeElement === hamburger) {
+          toggleMenu();
+        }
+      });
+
+      /*
+       * Close mobile menu after clicking a link.
+       */
+      document.addEventListener("click", function (event) {
+        const navLinks = document.getElementById("nav-links");
+
+        if (navLinks && event.target.closest("#nav-links a")) {
+          navLinks.classList.remove("show");
+        }
+      });
     </script>
 
     <!-- =====================================================
-         SUPABASE
+         FEATURED VIDEO PROTECTION
     ===================================================== -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("featuredVideo");
 
-    <script src="./supabase.js"></script>
+        const fallback = document.getElementById("videoFallback");
+
+        if (!video || !fallback) {
+          return;
+        }
+
+        /*
+         * If the video file cannot load,
+         * show a friendly fallback instead
+         * of leaving a broken player.
+         */
+
+        video.addEventListener("error", function () {
+          video.style.display = "none";
+
+          fallback.style.display = "flex";
+        });
+
+        /*
+         * Hide fallback if the video successfully
+         * loads.
+         */
+
+        video.addEventListener("loadeddata", function () {
+          video.style.display = "block";
+
+          fallback.style.display = "none";
+        });
+      });
+    </script>
 
     <!-- =====================================================
-         SUPABASE MUSEUM GALLERY LOADER
-         
-         IMPORTANT:
-         Images are inside:
-
-         church-media
-              └── photos
-                    ├── image1.jpg
-                    ├── image2.jpg
-                    └── ...
+         SUPABASE MUSEUM GALLERY
     ===================================================== -->
 
     <script>
       async function loadMuseumGallery() {
         const gallery = document.getElementById("museumGallery");
 
-        /* LOADING MESSAGE */
+        if (!gallery) {
+          return;
+        }
+
+        /*
+         * Initial loading state.
+         */
 
         gallery.innerHTML = `
+          <div class="museum-loader">
+            <i class="fas fa-spinner fa-spin"></i>
 
-                <div class="museum-loader">
+            <p>
+              Loading church gallery...
+            </p>
+          </div>
+        `;
 
-                    <i
-                        class="fas fa-spinner fa-spin"
-                    ></i>
+        /*
+         * Check that Supabase was successfully
+         * initialized by supabase.js.
+         */
 
-                    <p>
-                        Loading church gallery...
-                    </p>
+        if (typeof supabaseClient === "undefined" || !supabaseClient) {
+          console.error("Supabase client is unavailable.");
 
-                </div>
+          gallery.innerHTML = `
+            <div class="museum-empty">
+              Gallery temporarily unavailable.
+              <br><br>
+              Please try again later.
+            </div>
+          `;
 
-            `;
+          return;
+        }
 
         try {
-          /* ==========================================
-                   READ THE PHOTOS FOLDER
-                ========================================== */
-
           const { data, error } = await supabaseClient.storage
             .from("church-media")
             .list("photos", {
@@ -1635,36 +1913,42 @@
               },
             });
 
-          /* SUPABASE ERROR */
-
           if (error) {
             console.error("Supabase gallery error:", error);
 
             gallery.innerHTML = `
+              <div class="museum-empty">
 
-                        <div class="museum-empty">
+                Gallery temporarily unavailable.
 
-                            Unable to load gallery.
+                <br><br>
 
-                            <br><br>
+                Please try again later.
 
-                            ${error.message}
-
-                        </div>
-
-                    `;
+              </div>
+            `;
 
             return;
           }
 
           console.log("Files inside photos:", data);
 
-          /* ==========================================
-                   FIND IMAGE FILES
-                ========================================== */
+          if (!Array.isArray(data)) {
+            gallery.innerHTML = `
+              <div class="museum-empty">
+                No gallery images available.
+              </div>
+            `;
+
+            return;
+          }
+
+          /*
+           * Only accept actual image files.
+           */
 
           const imageFiles = data.filter((file) => {
-            if (!file.id) {
+            if (!file || !file.name || !file.id) {
               return false;
             }
 
@@ -1679,70 +1963,102 @@
             );
           });
 
-          /* ==========================================
-                   NO IMAGES
-                ========================================== */
-
           if (imageFiles.length === 0) {
             gallery.innerHTML = `
+              <div class="museum-empty">
 
-                        <div class="museum-empty">
+                No gallery images found
+                inside the photos folder.
 
-                            No gallery images found
-                            inside the photos folder.
-
-                        </div>
-
-                    `;
+              </div>
+            `;
 
             return;
           }
 
-          /* CLEAR LOADER */
+          /*
+           * Clear loading message.
+           */
 
           gallery.innerHTML = "";
 
-          /* ==========================================
-                   CREATE IMAGE ELEMENTS
-                ========================================== */
+          /*
+           * Create images.
+           */
 
           imageFiles.forEach((file, index) => {
-            /*
-             * CORRECT SUPABASE PATH
-             *
-             * church-media/photos/file.jpg
-             */
+            try {
+              const filePath = `photos/${file.name}`;
 
-            const filePath = `photos/${file.name}`;
+              const { data: urlData } = supabaseClient.storage
+                .from("church-media")
+                .getPublicUrl(filePath);
 
-            const { data: urlData } = supabaseClient.storage
-              .from("church-media")
-              .getPublicUrl(filePath);
+              if (!urlData || !urlData.publicUrl) {
+                return;
+              }
 
-            const image = document.createElement("img");
+              const image = document.createElement("img");
 
-            image.src = urlData.publicUrl;
+              image.src = urlData.publicUrl;
 
-            image.alt = "PEFA Soweto Church Gallery";
+              image.alt = "PEFA Soweto Church Gallery";
 
-            if (index === 0) {
-              image.classList.add("active");
+              image.loading = "lazy";
+
+              /*
+               * Prevent one broken image
+               * from damaging the gallery.
+               */
+
+              image.onerror = function () {
+                console.warn("Gallery image failed:", file.name);
+
+                image.remove();
+
+                /*
+                 * If all images fail,
+                 * display fallback.
+                 */
+
+                const remaining = gallery.querySelectorAll("img");
+
+                if (remaining.length === 0) {
+                  gallery.innerHTML = `
+                        <div class="museum-empty">
+                          Gallery images are
+                          temporarily unavailable.
+                        </div>
+                      `;
+                }
+              };
+
+              if (index === 0) {
+                image.classList.add("active");
+              }
+
+              gallery.appendChild(image);
+            } catch (imageError) {
+              console.error("Gallery image error:", imageError);
             }
-
-            gallery.appendChild(image);
           });
 
-          /* ==========================================
-                   GALLERY SLIDER
-                ========================================== */
+          /*
+           * Start gallery slider only after
+           * images have been created.
+           */
 
           const images = gallery.querySelectorAll("img");
 
           let currentImage = 0;
 
           if (images.length > 1) {
-            setInterval(() => {
-              images[currentImage].classList.remove("active");
+            setInterval(function () {
+              if (!document.body.contains(gallery)) {
+                return;
+              }
+
+              images[currentImage]?.classList.remove("active");
 
               currentImage++;
 
@@ -1750,27 +2066,31 @@
                 currentImage = 0;
               }
 
-              images[currentImage].classList.add("active");
+              images[currentImage]?.classList.add("active");
             }, 4000);
           }
         } catch (error) {
           console.error("Museum loader error:", error);
 
           gallery.innerHTML = `
+            <div class="museum-empty">
 
-                    <div class="museum-empty">
+              Gallery loading failed.
 
-                        Gallery loading failed.
+              <br><br>
 
-                    </div>
+              Please try again later.
 
-                `;
+            </div>
+          `;
         }
       }
 
-      /* START MUSEUM LOADER */
+      /*
+       * Start gallery after page loads.
+       */
 
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", function () {
         loadMuseumGallery();
       });
     </script>
@@ -1780,98 +2100,226 @@
     ===================================================== -->
 
     <script>
-      const verses = document.querySelectorAll(".museum-verse");
+      document.addEventListener("DOMContentLoaded", function () {
+        const verses = document.querySelectorAll(".museum-verse");
 
-      let currentVerse = 0;
-
-      function showNextVerse() {
-        verses[currentVerse].classList.remove("active");
-
-        currentVerse++;
-
-        if (currentVerse >= verses.length) {
-          currentVerse = 0;
+        if (!verses || verses.length === 0) {
+          return;
         }
 
-        verses[currentVerse].classList.add("active");
-      }
+        let currentVerse = 0;
 
-      setInterval(showNextVerse, 5000);
+        function showNextVerse() {
+          if (!verses[currentVerse]) {
+            return;
+          }
+
+          verses[currentVerse].classList.remove("active");
+
+          currentVerse++;
+
+          if (currentVerse >= verses.length) {
+            currentVerse = 0;
+          }
+
+          verses[currentVerse].classList.add("active");
+        }
+
+        setInterval(showNextVerse, 5000);
+      });
     </script>
 
     <!-- =====================================================
          PRAYER REQUEST → SUPABASE
+         RLS-SAFE FRONTEND HANDLING
     ===================================================== -->
 
     <script>
-      document
-        .getElementById("prayerForm")
-        .addEventListener("submit", async (e) => {
+      document.addEventListener("DOMContentLoaded", function () {
+        const prayerForm = document.getElementById("prayerForm");
+
+        const successMessage = document.getElementById("successMessage");
+
+        const submitButton = document.getElementById("prayerSubmitButton");
+
+        if (!prayerForm || !successMessage || !submitButton) {
+          return;
+        }
+
+        /*
+         * Prevent duplicate submissions.
+         */
+
+        let isSubmitting = false;
+
+        prayerForm.addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          const name = document.getElementById("name").value;
+          /*
+           * Stop double clicks.
+           */
 
-          const phone = document.getElementById("phone").value;
+          if (isSubmitting) {
+            return;
+          }
 
-          const email = document.getElementById("email").value;
+          /*
+           * Browser-side validation.
+           */
 
-          const request = document.getElementById("request").value;
-
-          const successMessage = document.getElementById("successMessage");
-
-          successMessage.textContent = "Submitting...";
-
-          const { data, error } = await supabaseClient
-            .from("soweto_pefa_prayer_requests")
-            .insert([
-              {
-                name: name,
-
-                phone: phone,
-
-                email: email,
-
-                request: request,
-              },
-            ]);
-
-          if (error) {
-            console.error(error);
-
-            successMessage.textContent = "Failed to submit prayer request.";
-
-            successMessage.style.color = "red";
+          if (!prayerForm.checkValidity()) {
+            prayerForm.reportValidity();
 
             return;
           }
 
-          successMessage.textContent = "Prayer request submitted successfully!";
-
-          successMessage.style.color = "lime";
-
-          document.getElementById("prayerForm").reset();
-
           /*
-           * OPTIONAL:
-           * Send the same request to WhatsApp
+           * Verify Supabase client.
            */
 
-          const churchPhone = "254716499037";
+          if (typeof supabaseClient === "undefined" || !supabaseClient) {
+            successMessage.style.color = "red";
 
-          const message = `
+            successMessage.textContent =
+              "Prayer service is temporarily unavailable. Please try again later.";
 
-New Prayer Request 🙏
+            return;
+          }
 
-Name: ${name}
+          /*
+           * Lock form.
+           */
 
-Phone: ${phone}
+          isSubmitting = true;
 
-Email: ${email}
+          submitButton.disabled = true;
 
-Request: ${request}
+          submitButton.textContent = "Submitting...";
 
-`;
+          successMessage.style.color = "#111827";
+
+          successMessage.textContent = "Submitting your prayer request...";
+
+          /*
+           * Read and clean values.
+           */
+
+          const name = document.getElementById("name").value.trim();
+
+          const phone = document.getElementById("phone").value.trim();
+
+          const email = document.getElementById("email").value.trim();
+
+          const request = document.getElementById("request").value.trim();
+
+          /*
+           * Basic safety validation.
+           */
+
+          if (!name || !phone || !request) {
+            successMessage.style.color = "red";
+
+            successMessage.textContent = "Please complete all required fields.";
+
+            isSubmitting = false;
+
+            submitButton.disabled = false;
+
+            submitButton.textContent = "Submit Prayer Request";
+
+            return;
+          }
+
+          try {
+            /*
+             * Submit to Supabase.
+             */
+
+            const { error } = await supabaseClient
+              .from("soweto_pefa_prayer_requests")
+              .insert([
+                {
+                  name: name,
+
+                  phone: phone,
+
+                  email: email,
+
+                  request: request,
+                },
+              ]);
+
+            /*
+             * IMPORTANT:
+             * RLS errors are caught here.
+             */
+
+            if (error) {
+              console.error("SUPABASE PRAYER ERROR");
+
+              console.error("Message:", error.message);
+
+              console.error("Details:", error.details);
+
+              console.error("Hint:", error.hint);
+
+              console.error("Code:", error.code);
+
+              /*
+               * Specific RLS error.
+               */
+
+              if (error.code === "42501") {
+                successMessage.style.color = "red";
+
+                successMessage.textContent =
+                  "Your request could not be submitted at the moment. Please try again later.";
+              } else {
+                successMessage.style.color = "red";
+
+                successMessage.textContent =
+                  "We could not submit your prayer request right now. Please try again later.";
+              }
+
+              return;
+            }
+
+            /*
+             * SUCCESS
+             */
+
+            successMessage.style.color = "green";
+
+            successMessage.textContent =
+              "Prayer request submitted successfully. God bless you.";
+
+            prayerForm.reset();
+          } catch (error) {
+            /*
+             * Network errors,
+             * unexpected errors,
+             * Supabase outages, etc.
+             */
+
+            console.error("Prayer request unexpected error:", error);
+
+            successMessage.style.color = "red";
+
+            successMessage.textContent =
+              "We could not connect to the prayer service. Please try again later.";
+          } finally {
+            /*
+             * Always unlock the button.
+             */
+
+            isSubmitting = false;
+
+            submitButton.disabled = false;
+
+            submitButton.textContent = "Submit Prayer Request";
+          }
         });
+      });
     </script>
   </body>
 </html>
