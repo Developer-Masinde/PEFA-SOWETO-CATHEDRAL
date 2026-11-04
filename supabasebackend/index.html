@@ -1134,9 +1134,165 @@
           height: 200px;
         }
       }
+         
+      
+/* =====================================================
+   COMPLETE CHURCH PHOTO SESSION
+===================================================== */
+
+.photo-session {
+    padding: 45px 20px;
+    background: #020617;
+    text-align: center;
+    color: white;
+}
+
+.photo-session h2 {
+    color: gold;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.photo-description {
+    color: #e5e7eb;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.photo-session-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.photo-item {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border: 2px solid gold;
+    border-radius: 15px;
+    background: #0f172a;
+    cursor: pointer;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.08);
+}
+
+.photo-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: gold;
+    font-size: 2rem;
+}
+
+.photo-item:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-session-loading,
+.photo-session-empty {
+    grid-column: 1 / -1;
+    padding: 40px 15px;
+    color: gold;
+    font-size: 1.1rem;
+}
+
+.photo-session-loading i {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.gallery-update-note {
+    color: #d1d5db;
+    margin-top: 25px;
+    font-size: 0.9rem;
+}
+
+/* =====================================================
+   PHOTO LIGHTBOX
+===================================================== */
+
+.photo-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.photo-lightbox.show {
+    display: flex;
+}
+
+.photo-lightbox img {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 2px solid gold;
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+/* =====================================================
+   RESPONSIVE PHOTO SESSION
+===================================================== */
+
+@media (max-width: 900px) {
+    .photo-session-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .photo-session {
+        padding: 30px 12px;
+    }
+
+    .photo-session h2 {
+        font-size: 1.6rem;
+    }
+
+    .photo-session-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-item {
+        height: 260px;
+    }
+}
 
       /* =====================================================
-         MOBILE
+         MOBILE RESPONSIVE
       ===================================================== */
 
       @media (max-width: 768px) {
@@ -1453,18 +1609,21 @@
         <!-- =================================================
              GALLERY
         ================================================= -->
+           <div class="museum-card gallery-card">
+    <h3>Church Gallery</h3>
 
-        <div class="museum-card gallery-card">
-          <h3>Church Gallery</h3>
-
-          <div id="museumGallery" class="museum-gallery">
-            <div class="museum-loader">
-              <i class="fas fa-spinner fa-spin"></i>
-
-              <p>Loading church gallery...</p>
-            </div>
-          </div>
+    <div id="museumGallery" class="museum-gallery">
+        <div class="museum-loader">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading church gallery...</p>
         </div>
+    </div>
+
+    <a href="#photo-session" class="museum-button">
+        <i class="fas fa-images"></i>
+        View More Photos
+    </a>
+</div>
 
         <!-- =================================================
              VERSE
@@ -1522,7 +1681,56 @@
         </div>
       </div>
     </section>
+ 
+    <!-- =====================================================
+     COMPLETE CHURCH PHOTO SESSION
+====================================================== -->
 
+<section class="photo-session" id="photo-session">
+
+    <h2>
+        <i class="fas fa-camera"></i>
+        PEFA Church Photo Gallery
+    </h2>
+
+    <p class="photo-description">
+        Explore our church memories, services, events,
+        celebrations and ministry activities.
+    </p>
+
+    <div id="photoSessionGallery" class="photo-session-grid">
+
+        <div class="photo-session-loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading church photographs...</p>
+        </div>
+
+    </div>
+
+    <p class="gallery-update-note">
+        <i class="fas fa-sync-alt"></i>
+        New photographs uploaded by our administrator
+        automatically appear here.
+    </p>
+
+</section>
+
+<!-- PHOTO LIGHTBOX -->
+
+<div id="photoLightbox" class="photo-lightbox">
+
+    <button
+        type="button"
+        class="lightbox-close"
+        onclick="closePhotoLightbox()"
+        aria-label="Close photo"
+    >
+        &times;
+    </button>
+
+    <img id="lightboxImage" src="" alt="Church photograph">
+
+</div>
     <!-- =====================================================
          CHURCH INFORMATION
     ===================================================== -->
@@ -2093,7 +2301,195 @@
       document.addEventListener("DOMContentLoaded", function () {
         loadMuseumGallery();
       });
+
+      
     </script>
+         
+<script>
+    // =====================================================
+    // AUTOMATIC SUPABASE PHOTO SESSION
+    // =====================================================
+
+    let photoSessionFiles = [];
+    let photoSessionTimer = null;
+
+    async function loadPhotoSession() {
+
+        const gallery = document.getElementById("photoSessionGallery");
+
+        if (!gallery) return;
+
+        if (typeof supabaseClient === "undefined" || !supabaseClient) {
+            gallery.innerHTML = `
+                <div class="photo-session-empty">
+                    Photo gallery is temporarily unavailable.
+                </div>
+            `;
+            return;
+        }
+
+        try {
+
+            const { data, error } = await supabaseClient.storage
+                .from("church-media")
+                .list("photos", {
+                    limit: 1000,
+                    sortBy: {
+                        column: "created_at",
+                        order: "desc"
+                    }
+                });
+
+            if (error) throw error;
+
+            // Accept image files only.
+            const imageFiles = (data || []).filter(file => {
+
+                if (!file.name || !file.id) return false;
+
+                return /\.(jpg|jpeg|png|webp|gif)$/i.test(file.name);
+
+            });
+
+            // Check whether the gallery has changed.
+            const newSignature = imageFiles
+                .map(file => file.name + file.id)
+                .join("|");
+
+            const oldSignature = photoSessionFiles
+                .map(file => file.name + file.id)
+                .join("|");
+
+            // Avoid rebuilding the gallery unnecessarily.
+            if (newSignature === oldSignature) return;
+
+            photoSessionFiles = imageFiles;
+
+            gallery.innerHTML = "";
+
+            if (imageFiles.length === 0) {
+
+                gallery.innerHTML = `
+                    <div class="photo-session-empty">
+                        <i class="fas fa-images"></i>
+                        <p>No church photographs available yet.</p>
+                    </div>
+                `;
+
+                return;
+            }
+
+            imageFiles.forEach(file => {
+
+                const filePath = `photos/${file.name}`;
+
+                const { data: urlData } = supabaseClient.storage
+                    .from("church-media")
+                    .getPublicUrl(filePath);
+
+                if (!urlData || !urlData.publicUrl) return;
+
+                const photo = document.createElement("div");
+                photo.className = "photo-item";
+
+                const image = document.createElement("img");
+
+                image.src = urlData.publicUrl;
+                image.alt = "PEFA Soweto Cathedral Church photograph";
+                image.loading = "lazy";
+
+                const overlay = document.createElement("div");
+                overlay.className = "photo-overlay";
+
+                overlay.innerHTML = '<i class="fas fa-search-plus"></i>';
+
+                photo.appendChild(image);
+                photo.appendChild(overlay);
+
+                // Open photo in lightbox.
+                photo.addEventListener("click", function () {
+                    openPhotoLightbox(urlData.publicUrl);
+                });
+
+                gallery.appendChild(photo);
+
+            });
+
+        } catch (error) {
+
+            console.error("Photo session loading error:", error);
+
+            gallery.innerHTML = `
+                <div class="photo-session-empty">
+                    Unable to load photographs.
+                    Please try again later.
+                </div>
+            `;
+        }
+    }
+
+    // =====================================================
+    // PHOTO LIGHTBOX
+    // =====================================================
+
+    function openPhotoLightbox(imageUrl) {
+
+        const lightbox = document.getElementById("photoLightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+
+        if (!lightbox || !lightboxImage) return;
+
+        lightboxImage.src = imageUrl;
+
+        lightbox.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+    }
+
+    function closePhotoLightbox() {
+
+        const lightbox = document.getElementById("photoLightbox");
+
+        if (!lightbox) return;
+
+        lightbox.classList.remove("show");
+
+        document.body.style.overflow = "";
+    }
+
+    // Close lightbox when clicking outside the photo.
+    document.addEventListener("click", function (event) {
+
+        const lightbox = document.getElementById("photoLightbox");
+
+        if (event.target === lightbox) {
+            closePhotoLightbox();
+        }
+
+    });
+
+    // Close lightbox using Escape key.
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+            closePhotoLightbox();
+        }
+
+    });
+
+    // =====================================================
+    // AUTOMATIC GALLERY UPDATES
+    // =====================================================
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        loadPhotoSession();
+
+        // Check Supabase every 15 seconds for new uploads.
+        photoSessionTimer = setInterval(loadPhotoSession, 15000);
+
+    });
+</script>
 
     <!-- =====================================================
          BIBLE VERSE SLIDER
