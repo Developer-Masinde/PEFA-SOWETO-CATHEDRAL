@@ -1465,6 +1465,115 @@
           font-size: 0.85rem;
         }
       }
+         /* STYLING OF THE PHOTO AREA */
+         
+/* PHOTO ALBUM COVER */
+
+.photo-album-cover {
+  width: 100%;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  color: white;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border: 2px solid gold;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.photo-album-cover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+}
+
+.album-icon {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid gold;
+  border-radius: 15px;
+  color: gold;
+  font-size: 35px;
+  flex-shrink: 0;
+}
+
+.album-text {
+  flex: 1;
+}
+
+.album-text h3 {
+  margin: 0 0 8px;
+  color: gold;
+  font-size: 1.2rem;
+}
+
+.album-text p {
+  margin: 0;
+  color: #e5e7eb;
+}
+
+.album-arrow {
+  color: gold;
+  font-size: 25px;
+  transition: transform 0.3s ease;
+}
+
+.photo-album-cover.open .album-arrow {
+  transform: rotate(180deg);
+}
+
+/* HIDDEN GALLERY */
+
+.photo-session-grid[hidden] {
+  display: none !important;
+}
+
+.photo-session-grid:not([hidden]) {
+  margin-top: 25px;
+  animation: galleryReveal 0.5s ease;
+}
+
+@keyframes galleryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .photo-album-cover {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .album-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 25px;
+  }
+
+  .album-text h3 {
+    font-size: 1rem;
+  }
+
+  .album-text p {
+    font-size: 0.85rem;
+  }
+}
+
     </style>
   </head>
 
@@ -1686,34 +1795,61 @@
      COMPLETE CHURCH PHOTO SESSION
 ====================================================== -->
 
+ 
 <section class="photo-session" id="photo-session">
 
-    <h2>
-        <i class="fas fa-camera"></i>
-        PEFA Church Photo Gallery
-    </h2>
+  <h2>
+    <i class="fas fa-camera"></i>
+    PEFA Church Photo Gallery
+  </h2>
 
-    <p class="photo-description">
-        Explore our church memories, services, events,
-        celebrations and ministry activities.
-    </p>
+  <p class="photo-description">
+    Explore our church memories, services, events,
+    celebrations and ministry activities.
+  </p>
 
-    <div id="photoSessionGallery" class="photo-session-grid">
-
-        <div class="photo-session-loading">
-            <i class="fas fa-spinner fa-spin"></i>
-            <p>Loading church photographs...</p>
-        </div>
-
+  <!-- PHOTO ALBUM COVER -->
+  <button
+    type="button"
+    class="photo-album-cover"
+    id="photoAlbumButton"
+    aria-expanded="false"
+    aria-controls="photoSessionGallery"
+  >
+    <div class="album-icon">
+      <i class="fas fa-images"></i>
     </div>
 
-    <p class="gallery-update-note">
-        <i class="fas fa-sync-alt"></i>
-        New photographs uploaded by our administrator
-        automatically appear here.
-    </p>
+    <div class="album-text">
+      <h3>Explore Church Memories</h3>
+      <p>Tap to open our photo collection</p>
+    </div>
+
+    <span class="album-arrow" id="albumArrow">
+      <i class="fas fa-chevron-down"></i>
+    </span>
+  </button>
+
+  <!-- PHOTOS ARE HIDDEN UNTIL THE ALBUM IS OPENED -->
+  <div
+    id="photoSessionGallery"
+    class="photo-session-grid"
+    hidden
+  >
+    <div class="photo-session-loading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Loading church photographs...</p>
+    </div>
+  </div>
+
+  <p class="gallery-update-note">
+    <i class="fas fa-sync-alt"></i>
+    New photographs uploaded by our administrator
+    automatically appear here.
+  </p>
 
 </section>
+
 
 <!-- PHOTO LIGHTBOX -->
 
@@ -2717,5 +2853,41 @@
         });
       });
     </script>
+    <!-- JAVASCRIPT OF THE NEW PHOTO ARAE. -->
+       
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const albumButton = document.getElementById("photoAlbumButton");
+  const photoGallery = document.getElementById("photoSessionGallery");
+
+  if (!albumButton || !photoGallery) return;
+
+  albumButton.addEventListener("click", function () {
+
+    const isOpening = photoGallery.hidden;
+
+    photoGallery.hidden = !isOpening;
+
+    albumButton.classList.toggle("open", isOpening);
+
+    albumButton.setAttribute(
+      "aria-expanded",
+      String(isOpening)
+    );
+
+    if (isOpening) {
+      albumButton.querySelector(".album-text p").textContent =
+        "Tap to close the photo collection";
+    } else {
+      albumButton.querySelector(".album-text p").textContent =
+        "Tap to open our photo collection";
+    }
+
+  });
+
+});
+</script>
+
   </body>
 </html>
